@@ -13,14 +13,16 @@ class NewsNotification extends Notification
 {
     use Queueable;
 
+    public $post;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($post)
     {
-        //
+        $this->post = $post;
     }
 
     /**
@@ -36,7 +38,9 @@ class NewsNotification extends Notification
 
     public function toFacebookPoster($notifiable)
     {
-        return new FacebookPosterPost("Hello Fans");
+        return (new FacebookPosterPost($this->post->post_text))
+        ->withImage($this->post->post_image_url)
+        ->withLink($this->post->link);
     }
 
     /**
