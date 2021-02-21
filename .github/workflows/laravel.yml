@@ -34,5 +34,5 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: 66.96.147.117
-        username: ftp_cm
+        username: ftp_notifier
         password: ${{ secrets.ftp_password }}
